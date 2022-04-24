@@ -1,9 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import { Button, Select } from 'antd';
 
+import CaseList from './case-list';
+
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 
-import CaseList from '@/slices/case/case-list';
 import { setSortedKey, SortedKeyEnum, updateById } from '@/slices/case/caseSlice';
 
 import sortCaseListByKey from '@/utils/sortCaseListByKey';

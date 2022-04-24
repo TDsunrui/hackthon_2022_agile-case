@@ -1,4 +1,4 @@
-import { CaseModel, priorityMapper, SortedKeyEnum, statusMapper } from './../slices/case/caseSlice';
+import { CaseModel, priorityMapper, SortedKeyEnum, statusMapper } from '@/slices/case/caseSlice';
 
 export interface SortedCaseModel {
   value: CaseModel[SortedKeyEnum];

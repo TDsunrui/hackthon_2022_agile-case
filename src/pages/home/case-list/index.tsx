@@ -14,7 +14,7 @@ function CaseList(props: CaseListProps) {
   return (
     <div className="case-list-container">
       {sortedCaseList.map((sortedCase) => (
-        <CaseCard data={sortedCase} />
+        <CaseCard key={sortedCase.value} data={sortedCase} />
       ))}
     </div>
   );
