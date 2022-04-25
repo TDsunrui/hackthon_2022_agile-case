@@ -1,14 +1,24 @@
 .case-item-container {
   display: flex;
+  padding: 10px 16px;
+}
+
+.case-item-wrap {
+  display: flex;
   justify-content: space-between;
-  padding: 10px;
+  flex: 1;
 }
 
-.case-item-middle {
-  margin: 0 10px;
+.case-item-content {
+  margin: 0 16px;
 }
 
-.case-item-middle-third-status {
+.case-item-content-first {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.case-item-content-third-status {
   cursor: pointer;
 }
 

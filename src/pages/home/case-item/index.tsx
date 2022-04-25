@@ -1,10 +1,13 @@
-import { Dropdown, Menu } from 'antd';
+import { Dropdown, Menu, Typography } from 'antd';
+import { MailOutlined, PhoneOutlined } from '@ant-design/icons';
 
 import CaseItemAgent from '../case-item-agent';
 
 import { useAppDispatch } from '@/app/hooks';
 
 import { CaseModel, updateById } from '@/slices/case/caseSlice';
+
+import notification from '@/utils/notification';
 
 import './index.scss';
 
@@ -22,10 +25,18 @@ function CaseItem(props: CaseItemProps) {
       id: data.id,
       data: { status },
     }));
+
+    notification('Status updated successfully');
+  };
+
+  const SourceIcon = () => {
+    const ComponentName = data.source === 'Call' ? PhoneOutlined : MailOutlined;
+    return <ComponentName style={{ marginTop: 2, fontSize: 16, color: '#aaa' }} />
   };
   
   const DropdownOverlay = (
     <Menu
+      selectedKeys={[data.status]}
       items={[
         { label: 'New', key: 'New' },
         { label: 'Open', key: 'Open' },
@@ -40,26 +51,35 @@ function CaseItem(props: CaseItemProps) {
   
   return (
     <div className="case-item-container">
-      <div className="case-item-left">{data.source}</div>
+      {/* source */}
+      <SourceIcon />
 
-      <div className="case-item-middle">
-        <div className="case-item-middle-first">
-          #{data.id} {data.title}
+      <div className="case-item-wrap">
+        <div className="case-item-content">
+          {/* id & title */}
+          <div className="case-item-content-first">
+            #{data.id} {data.title}
+          </div>
+
+          {/* due date */}
+          <div className="case-item-content-second">
+            {data.due_date}
+          </div>
+
+          {/* status */}
+          <div className="case-item-content-third">
+            <Dropdown overlay={DropdownOverlay} trigger={['click']}>
+              <Typography.Link className="case-item-middle-third-status">
+                {data.status}
+              </Typography.Link>
+            </Dropdown>
+          </div>
         </div>
 
-        <div className="case-item-middle-second">
-          {data.due_date}
+        {/* agent */}
+        <div className="case-item-right">
+          <CaseItemAgent data={data} />
         </div>
-
-        <div className="case-item-middle-third">
-          <Dropdown overlay={DropdownOverlay}>
-            <span className="case-item-middle-third-status">{data.status}</span>
-          </Dropdown>
-        </div>
-      </div>
-
-      <div className="case-item-right">
-        <CaseItemAgent data={data} />
       </div>
     </div>
   );

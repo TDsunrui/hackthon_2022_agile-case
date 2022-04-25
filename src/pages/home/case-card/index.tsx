@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider } from "antd";
+import { Divider, Typography } from "antd";
 
 import CaseItem from "../case-item";
 
@@ -16,9 +16,9 @@ function CaseCard(props: CaseCardProps) {
   
   return (
     <div className="case-card-container">
-      <h4 className="case-card-header">
+      <Typography.Text className="case-card-header" strong>
         {data.title} ({data.list.length})
-      </h4>
+      </Typography.Text>
 
       <div className="case-card-content">
         {data.list.map((item) => (

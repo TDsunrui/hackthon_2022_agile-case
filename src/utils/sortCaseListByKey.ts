@@ -1,16 +1,16 @@
-import { CaseModel, SortedKeyEnum } from '@/slices/case/caseSlice';
+import { CaseModel, SortedKeysType } from '@/slices/case/caseSlice';
 
 export interface SortedCaseModel {
-  value: CaseModel[SortedKeyEnum];
+  value: CaseModel['priority' | 'status'];
   title: string;
   list: CaseModel[];
 }
 
-const sortCaseListByKey = (caseList: CaseModel[], key: SortedKeyEnum) => {
+const sortCaseListByKey = (caseList: CaseModel[], key: SortedKeysType) => {
   const result: SortedCaseModel[] = [];
   
   switch (key) {
-    case 'priority':
+    case 'Priority':
       const priorityOrder: CaseModel['priority'][] = ['Urgent', 'High', 'Normal', 'Low'];
       priorityOrder.forEach((curPriority, index) => {
         result[index] = {
@@ -20,7 +20,7 @@ const sortCaseListByKey = (caseList: CaseModel[], key: SortedKeyEnum) => {
         };
       });
       break;
-    case 'status':
+    case 'Status':
       const statusOrder: CaseModel['status'][] = ['New', 'Open', 'Pending', 'On-hold', 'Resolved', 'Closed'];
       statusOrder.forEach((curStatus, index) => {
         result[index] = {
