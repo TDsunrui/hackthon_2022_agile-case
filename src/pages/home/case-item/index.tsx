@@ -1,11 +1,12 @@
-import { Avatar, Select } from 'antd';
+import { Dropdown, Menu } from 'antd';
 
-import { CaseModel, sourceMapper, updateById } from '@/slices/case/caseSlice';
+import CaseItemAgent from '../case-item-agent';
 
-import './index.scss';
 import { useAppDispatch } from '@/app/hooks';
 
-const { Option } = Select;
+import { CaseModel, updateById } from '@/slices/case/caseSlice';
+
+import './index.scss';
 
 export interface CaseItemProps {
   data: CaseModel;
@@ -16,18 +17,30 @@ function CaseItem(props: CaseItemProps) {
 
   const dispatch = useAppDispatch();
 
-  const handleChangeStatus = (id: string, status: CaseModel['status']) => {
-    console.log(id, status);
-    
+  const handleChangeStatus = (status: CaseModel['status']) => {
     dispatch(updateById({
-      id,
+      id: data.id,
       data: { status },
     }));
   };
   
+  const DropdownOverlay = (
+    <Menu
+      items={[
+        { label: 'New', key: 'New' },
+        { label: 'Open', key: 'Open' },
+        { label: 'Pending', key: 'Pending' },
+        { label: 'On-hold', key: 'On-hold' },
+        { label: 'Resolved', key: 'Resolved' },
+        { label: 'Closed', key: 'Closed' },
+      ]}
+      onClick={({ key }) => handleChangeStatus(key as any)}
+    />
+  );
+  
   return (
     <div className="case-item-container">
-      <div className="case-item-left">{sourceMapper[data.source]}</div>
+      <div className="case-item-left">{data.source}</div>
 
       <div className="case-item-middle">
         <div className="case-item-middle-first">
@@ -39,24 +52,14 @@ function CaseItem(props: CaseItemProps) {
         </div>
 
         <div className="case-item-middle-third">
-          <Select
-            style={{ width: 120 }}
-            bordered={false}
-            value={data.status}
-            onChange={(value) => handleChangeStatus(data.id, value)}
-          >
-            <Option value="new">New</Option>
-            <Option value="open">Open</Option>
-            <Option value="pending">Pending</Option>
-            <Option value="onHold">On-hold</Option>
-            <Option value="resolved">Resolved</Option>
-            <Option value="closed">Closed</Option>
-          </Select>
+          <Dropdown overlay={DropdownOverlay}>
+            <span className="case-item-middle-third-status">{data.status}</span>
+          </Dropdown>
         </div>
       </div>
 
       <div className="case-item-right">
-        <Avatar size="small">{data.agent}</Avatar>
+        <CaseItemAgent data={data} />
       </div>
     </div>
   );

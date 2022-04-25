@@ -19,8 +19,8 @@ function Home() {
     dispatch(updateById({
       id: '1',
       data: {
-        status: 'pending',
-        priority: 'high',
+        status: 'Pending',
+        priority: 'High',
       },
     }));
   };

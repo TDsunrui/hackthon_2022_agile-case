@@ -1,4 +1,4 @@
-import { CaseModel, priorityMapper, SortedKeyEnum, statusMapper } from '@/slices/case/caseSlice';
+import { CaseModel, SortedKeyEnum } from '@/slices/case/caseSlice';
 
 export interface SortedCaseModel {
   value: CaseModel[SortedKeyEnum];
@@ -11,21 +11,21 @@ const sortCaseListByKey = (caseList: CaseModel[], key: SortedKeyEnum) => {
   
   switch (key) {
     case 'priority':
-      const priorityOrder: CaseModel['priority'][] = ['urgent', 'high', 'normal', 'low'];
+      const priorityOrder: CaseModel['priority'][] = ['Urgent', 'High', 'Normal', 'Low'];
       priorityOrder.forEach((curPriority, index) => {
         result[index] = {
           value: curPriority,
-          title: priorityMapper[curPriority],
+          title: curPriority,
           list: caseList.filter((item) => item.priority === curPriority),
         };
       });
       break;
     case 'status':
-      const statusOrder: CaseModel['status'][] = ['new', 'open', 'pending', 'onHold', 'resolved', 'closed'];
+      const statusOrder: CaseModel['status'][] = ['New', 'Open', 'Pending', 'On-hold', 'Resolved', 'Closed'];
       statusOrder.forEach((curStatus, index) => {
         result[index] = {
           value: curStatus,
-          title: statusMapper[curStatus],
+          title: curStatus,
           list: caseList.filter((item) => item.status === curStatus),
         };
       });

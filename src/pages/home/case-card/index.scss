@@ -1,7 +1,11 @@
 .case-card-container {
   flex: 1;
-  margin: 0 10px;
+  margin-right: 10px;
   box-shadow: 0 0 10px #c7c7c7;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
 }
 
 .case-card-header {

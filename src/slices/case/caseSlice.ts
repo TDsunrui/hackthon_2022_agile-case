@@ -1,26 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export const priorityMapper = {
-  low: 'Low',
-  normal: 'Normal',
-  high: 'High',
-  urgent: 'Urgent',
-};
-
-export const sourceMapper = {
-  call: 'Call',
-  email: 'Email',
-};
-
-export const statusMapper = {
-  new: 'New',
-  open: 'Open',
-  pending: 'Pending',
-  onHold: 'On-hold',
-  resolved: 'Resolved',
-  closed: 'Closed',
-};
-
 export interface CaseModel {
   id: string;
   title: string;
@@ -28,9 +7,9 @@ export interface CaseModel {
   group: string;
   phone: string;
   email: string;
-  source: keyof typeof sourceMapper;
-  status: keyof typeof statusMapper;
-  priority: keyof typeof priorityMapper;
+  source: 'Call' | 'Email';
+  status: 'New' | 'Open' | 'Pending' | 'On-hold' | 'Resolved' | 'Closed';
+  priority: 'Low' | 'Normal' | 'High' | 'Urgent';
   due_date: string;
 }
 
@@ -54,9 +33,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-1',
       email: 'email-1',
-      source: 'call',
-      status: 'new',
-      priority: 'low',
+      source: 'Call',
+      status: 'New',
+      priority: 'Low',
       due_date: '24 Apr 12:00 AM',
     },
     {
@@ -66,9 +45,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-2',
       email: 'email-2',
-      source: 'call',
-      status: 'open',
-      priority: 'normal',
+      source: 'Call',
+      status: 'Open',
+      priority: 'Normal',
       due_date: '24 Apr 13:00 AM',
     },
     {
@@ -78,9 +57,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-3',
       email: 'email-3',
-      source: 'call',
-      status: 'open',
-      priority: 'high',
+      source: 'Call',
+      status: 'Open',
+      priority: 'High',
       due_date: '24 Apr 14:00 AM',
     },
     {
@@ -90,9 +69,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-4',
       email: 'email-4',
-      source: 'email',
-      status: 'resolved',
-      priority: 'high',
+      source: 'Email',
+      status: 'Resolved',
+      priority: 'High',
       due_date: '24 Apr 15:00 AM',
     },
     {
@@ -102,9 +81,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-5',
       email: 'email-5',
-      source: 'call',
-      status: 'new',
-      priority: 'urgent',
+      source: 'Call',
+      status: 'New',
+      priority: 'Urgent',
       due_date: '24 Apr 16:00 AM',
     },
     {
@@ -114,9 +93,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-6',
       email: 'email-6',
-      source: 'email',
-      status: 'closed',
-      priority: 'high',
+      source: 'Email',
+      status: 'Closed',
+      priority: 'High',
       due_date: '24 Apr 17:00 AM',
     },
     {
@@ -126,9 +105,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-7',
       email: 'email-7',
-      source: 'email',
-      status: 'resolved',
-      priority: 'low',
+      source: 'Email',
+      status: 'Resolved',
+      priority: 'Low',
       due_date: '24 Apr 18:00 AM',
     },
     {
@@ -138,9 +117,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-8',
       email: 'email-8',
-      source: 'email',
-      status: 'resolved',
-      priority: 'normal',
+      source: 'Email',
+      status: 'Resolved',
+      priority: 'Normal',
       due_date: '24 Apr 19:00 AM',
     },
     {
@@ -150,9 +129,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-9',
       email: 'email-9',
-      source: 'email',
-      status: 'pending',
-      priority: 'urgent',
+      source: 'Email',
+      status: 'Pending',
+      priority: 'Urgent',
       due_date: '24 Apr 20:00 AM',
     },
     {
@@ -162,9 +141,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-10',
       email: 'email-10',
-      source: 'email',
-      status: 'resolved',
-      priority: 'low',
+      source: 'Email',
+      status: 'Resolved',
+      priority: 'Low',
       due_date: '24 Apr 21:00 AM',
     },
     {
@@ -174,9 +153,9 @@ const initialState: CaseState = {
       group: 'kirin',
       phone: 'phone-11',
       email: 'email-11',
-      source: 'email',
-      status: 'onHold',
-      priority: 'low',
+      source: 'Email',
+      status: 'On-hold',
+      priority: 'Low',
       due_date: '24 Apr 22:00 AM',
     },
   ],
