@@ -1,0 +1,55 @@
+.history {
+  .history-t {
+    padding: 10px 24px 20px;
+    box-sizing: border-box;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .filter-by {
+      cursor: pointer;
+    }
+  }
+  .timeline {
+    padding: 30px 40px;
+
+    .timeline-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        color: #999;
+        font-size: 16px;
+      }
+    }
+    .ant-timeline-item-content {
+      top: -20px;
+      margin-left: 70px;
+    }
+    .small {
+      color: #999;
+      font-size: 12px;
+    }
+    .black {
+      color: #000;
+      font-weight: bolder;
+    }
+    .timeline-dot {
+      position: relative;
+      &::after {
+        content: ".....";
+        color: #999;
+        position: absolute;
+        top: 15px;
+        left: 40px;
+        height: 1px;
+        letter-spacing: 2px;
+        line-height: 1px;
+      }
+    }
+  }
+}
