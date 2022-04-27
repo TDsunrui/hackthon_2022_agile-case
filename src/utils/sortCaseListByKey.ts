@@ -1,12 +1,12 @@
-import { CaseModel, SortedKeyEnum } from '@/slices/case/caseSlice';
+import { CaseModel, SortedKeyType } from '@/slices/case/caseSlice';
 
 export interface SortedCaseModel {
-  value: CaseModel[SortedKeyEnum];
+  value: CaseModel['priority' | 'status'];
   title: string;
   list: CaseModel[];
 }
 
-const sortCaseListByKey = (caseList: CaseModel[], key: SortedKeyEnum) => {
+const sortCaseListByKey = (caseList: CaseModel[], key: SortedKeyType) => {
   const result: SortedCaseModel[] = [];
   
   switch (key) {

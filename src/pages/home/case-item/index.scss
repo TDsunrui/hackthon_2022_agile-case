@@ -1,17 +1,25 @@
 .case-item-container {
   display: flex;
+  padding: 10px 16px;
+  cursor: move !important;
+}
+
+.dragging-over {
+  background-color: rgb(236, 236, 236);
+  box-shadow: 0 0 10px #c7c7c7;
+}
+
+.case-item-wrap {
+  flex: 1;
+  display: flex;
   justify-content: space-between;
-  padding: 10px;
 }
 
-.case-item-middle {
-  margin: 0 10px;
+.case-item-content {
+  margin: 0 16px;
 }
 
-.case-item-middle-third-status {
-  cursor: pointer;
-}
-
-.case-item-right-avatar {
-  cursor: pointer;
+.case-item-content-first {
+  font-size: 13px;
+  font-weight: 600;
 }

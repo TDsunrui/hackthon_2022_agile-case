@@ -9,6 +9,7 @@
     "eject": "craco eject"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -19,6 +20,7 @@
     "@types/react-dom": "^18.0.0",
     "antd": "^4.20.0",
     "react": "^18.0.0",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.1",
     "react-scripts": "5.0.1",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^6.4.3",
+    "@types/react-beautiful-dnd": "^13.1.2",
     "node-sass": "^7.0.1"
   },
   "eslintConfig": {

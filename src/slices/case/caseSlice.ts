@@ -13,18 +13,19 @@ export interface CaseModel {
   due_date: string;
 }
 
-export enum SortedKeyEnum {
-  Priority = 'priority',
-  Status = 'status',
+export const SortedKeyMapper = {
+  priority: 'Priority',
+  status: 'Status',
 }
+export type SortedKeyType = keyof typeof SortedKeyMapper;
 
 interface CaseState {
-  sortedKey: SortedKeyEnum;
+  sortedKey: SortedKeyType;
   caseList: CaseModel[];
 }
 
 const initialState: CaseState = {
-  sortedKey: SortedKeyEnum.Priority,
+  sortedKey: 'priority',
   caseList: [
     {
       id: '1',
@@ -165,7 +166,7 @@ const caseSlice = createSlice({
   name: 'case',
   initialState,
   reducers: {
-    setSortedKey: (state, action: PayloadAction<SortedKeyEnum>) => {
+    setSortedKey: (state, action: PayloadAction<SortedKeyType>) => {
       state.sortedKey = action.payload;
     },
     updateById: (state, action: PayloadAction<{ id: CaseModel['id'], data: Partial<CaseModel> }>) => {
