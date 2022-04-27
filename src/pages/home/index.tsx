@@ -5,7 +5,7 @@ import CaseList from './case-list';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 
-import { setSortedKey, SortedKeysType } from '@/slices/case/caseSlice';
+import { setSortedKey, SortedKeyType } from '@/slices/case/caseSlice';
 
 import sortCaseListByKey from '@/utils/sortCaseListByKey';
 
@@ -21,13 +21,13 @@ function Home() {
   
   return (
     <>
-      <Select<SortedKeysType>
+      <Select<SortedKeyType>
         style={{ width: 100 }}
         value={sortedKey}
         onChange={(value) => dispatch(setSortedKey(value))}
       >
-        <Option value="Priority">Priority</Option>
-        <Option value="Status">Status</Option>
+        <Option value="priority">Priority</Option>
+        <Option value="status">Status</Option>
       </Select>
       
       <CaseList sortedCaseList={sortedCaseList} />

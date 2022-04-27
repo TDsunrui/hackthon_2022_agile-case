@@ -1,5 +1,6 @@
 import { Dropdown, Menu, Typography } from 'antd';
 import { MailOutlined, PhoneOutlined } from '@ant-design/icons';
+import { DraggableProvided } from 'react-beautiful-dnd';
 
 import CaseItemAgent from '../case-item-agent';
 
@@ -13,10 +14,11 @@ import './index.scss';
 
 export interface CaseItemProps {
   data: CaseModel;
+  dragProvided: DraggableProvided;
 }
 
 function CaseItem(props: CaseItemProps) {
-  const { data } = props;
+  const { data, dragProvided } = props;
 
   const dispatch = useAppDispatch();
 
@@ -50,7 +52,12 @@ function CaseItem(props: CaseItemProps) {
   );
   
   return (
-    <div className="case-item-container">
+    <div
+      className="case-item-container"
+      ref={dragProvided.innerRef}
+      {...dragProvided.draggableProps}
+      {...dragProvided.dragHandleProps}
+    >
       {/* source */}
       <SourceIcon />
 
@@ -77,9 +84,7 @@ function CaseItem(props: CaseItemProps) {
         </div>
 
         {/* agent */}
-        <div className="case-item-right">
-          <CaseItemAgent data={data} />
-        </div>
+        <CaseItemAgent data={data} />
       </div>
     </div>
   );

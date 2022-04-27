@@ -1,12 +1,13 @@
 .case-item-container {
   display: flex;
   padding: 10px 16px;
+  cursor: move !important;
 }
 
 .case-item-wrap {
+  flex: 1;
   display: flex;
   justify-content: space-between;
-  flex: 1;
 }
 
 .case-item-content {
@@ -16,12 +17,4 @@
 .case-item-content-first {
   font-size: 13px;
   font-weight: 600;
-}
-
-.case-item-content-third-status {
-  cursor: pointer;
-}
-
-.case-item-right-avatar {
-  cursor: pointer;
 }
