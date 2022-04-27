@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { Select } from 'antd';
 
 import CaseList from './case-list';
+import DetailModal from '../detail-modal';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 
@@ -35,6 +36,9 @@ function Home() {
       </div>
       
       <CaseList sortedCaseList={sortedCaseList} />
+
+      {/* detail modal */}
+      <DetailModal />
     </>
   );
 }

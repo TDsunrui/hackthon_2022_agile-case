@@ -6,7 +6,7 @@ import CaseItemAgent from '../case-item-agent';
 
 import { useAppDispatch } from '@/app/hooks';
 
-import { CaseModel, updateById } from '@/slices/case/caseSlice';
+import { CaseModel, changeRoute, updateById } from '@/slices/case/caseSlice';
 
 import notification from '@/utils/notification';
 
@@ -25,6 +25,13 @@ function CaseItem(props: CaseItemProps) {
 
   const caseItemClassName = `case-item-container ${snapshot.isDragging ? 'dragging-over' : '' }`;
 
+  const handleClickCaseItem = () => {
+    dispatch(changeRoute({
+      curPage: 'detail-modal',
+      curCaseId: data.id,
+    }));
+  };
+  
   const handleChangeStatus = (status: CaseModel['status']) => {
     dispatch(updateById({
       id: data.id,
@@ -60,6 +67,7 @@ function CaseItem(props: CaseItemProps) {
       ref={dragProvided.innerRef}
       {...dragProvided.draggableProps}
       {...dragProvided.dragHandleProps}
+      onClick={handleClickCaseItem}
     >
       {/* source */}
       <SourceIcon />

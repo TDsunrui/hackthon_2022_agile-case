@@ -20,11 +20,17 @@ export const SortedKeyMapper = {
 export type SortedKeyType = keyof typeof SortedKeyMapper;
 
 interface CaseState {
+  curPage: 'home' | 'detail-modal' | 'detail';
+  curCaseId?: string;
+  curCase?: CaseModel;
   sortedKey: SortedKeyType;
   caseList: CaseModel[];
 }
 
 const initialState: CaseState = {
+  curPage: 'home',
+  curCaseId: undefined,
+  curCase: undefined,
   sortedKey: 'priority',
   caseList: [
     {
@@ -166,6 +172,22 @@ const caseSlice = createSlice({
   name: 'case',
   initialState,
   reducers: {
+    setCurCaseId: (state, action: PayloadAction<CaseState['curCaseId']>) => {
+      const curCaseId = action.payload;
+      state.curCaseId = curCaseId;
+      state.curCase = state.caseList.find((item) => item.id === curCaseId);
+    },
+    changeRoute: (state, action: PayloadAction<Pick<CaseState, 'curPage' | 'curCaseId'>>) => {
+      const { curPage, curCaseId } = action.payload;
+      state.curPage = curPage;
+      if (curPage === 'home') {
+        state.curCaseId = undefined;
+        state.curCase = undefined;
+      } else if (curPage === 'detail-modal') {
+        state.curCaseId = curCaseId;
+        state.curCase = state.caseList.find((item) => item.id === curCaseId);
+      }
+    },
     setSortedKey: (state, action: PayloadAction<SortedKeyType>) => {
       state.sortedKey = action.payload;
     },
@@ -180,6 +202,6 @@ const caseSlice = createSlice({
   }
 });
 
-export const { setSortedKey, updateById } = caseSlice.actions;
+export const { setCurCaseId, changeRoute, setSortedKey, updateById } = caseSlice.actions;
 
 export default caseSlice.reducer;
