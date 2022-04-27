@@ -34,13 +34,12 @@ function CaseCard(props: CaseCardProps) {
             {data.list.map((item, index) => (
               <React.Fragment key={item.id}>
                 <Draggable draggableId={item.id} index={index}>
-                  {(provided) => (
-                    <CaseItem data={item} dragProvided={provided} />
+                  {(provided, snapshot) => (
+                    <CaseItem data={item} dragProvided={provided} snapshot={snapshot} />
                   )}
                 </Draggable>
 
-                {index !== data.list.length - 1 && <Divider style={{ margin: 0 }} />}
-
+                <Divider style={{ margin: 0 }} />
               </React.Fragment>
             ))}
 

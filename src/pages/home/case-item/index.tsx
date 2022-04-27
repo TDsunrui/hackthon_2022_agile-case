@@ -1,6 +1,6 @@
 import { Dropdown, Menu, Typography } from 'antd';
 import { MailOutlined, PhoneOutlined } from '@ant-design/icons';
-import { DraggableProvided } from 'react-beautiful-dnd';
+import { DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 
 import CaseItemAgent from '../case-item-agent';
 
@@ -15,12 +15,15 @@ import './index.scss';
 export interface CaseItemProps {
   data: CaseModel;
   dragProvided: DraggableProvided;
+  snapshot: DraggableStateSnapshot;
 }
 
 function CaseItem(props: CaseItemProps) {
-  const { data, dragProvided } = props;
+  const { data, dragProvided, snapshot } = props;
 
   const dispatch = useAppDispatch();
+
+  const caseItemClassName = `case-item-container ${snapshot.isDragging ? 'dragging-over' : '' }`;
 
   const handleChangeStatus = (status: CaseModel['status']) => {
     dispatch(updateById({
@@ -53,7 +56,7 @@ function CaseItem(props: CaseItemProps) {
   
   return (
     <div
-      className="case-item-container"
+      className={caseItemClassName}
       ref={dragProvided.innerRef}
       {...dragProvided.draggableProps}
       {...dragProvided.dragHandleProps}

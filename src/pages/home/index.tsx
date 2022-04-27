@@ -9,6 +9,8 @@ import { setSortedKey, SortedKeyType } from '@/slices/case/caseSlice';
 
 import sortCaseListByKey from '@/utils/sortCaseListByKey';
 
+import './index.scss';
+
 const { Option } = Select;
 
 function Home() {
@@ -21,14 +23,16 @@ function Home() {
   
   return (
     <>
-      <Select<SortedKeyType>
-        style={{ width: 100 }}
-        value={sortedKey}
-        onChange={(value) => dispatch(setSortedKey(value))}
-      >
-        <Option value="priority">Priority</Option>
-        <Option value="status">Status</Option>
-      </Select>
+      <div className="home-sort-select">
+        <Select<SortedKeyType>
+          style={{ width: 120 }}
+          value={sortedKey}
+          onChange={(value) => dispatch(setSortedKey(value))}
+        >
+          <Option value="priority">Priority</Option>
+          <Option value="status">Status</Option>
+        </Select>
+      </div>
       
       <CaseList sortedCaseList={sortedCaseList} />
     </>
