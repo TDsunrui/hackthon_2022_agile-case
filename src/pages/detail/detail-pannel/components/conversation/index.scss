@@ -1,5 +1,21 @@
 .conversation {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 60px 20px 24px;
+  .conversation-item {
+    display: flex;
+    border-bottom: 1px dotted #eee;
+    padding-top: 20px;
+    .conversation-user {
+      color: #666;
+      span {
+        color: #000;
+        font-weight: bolder;
+        margin-right: 8px;
+      }
+    }
+    .conversation-con {
+      margin-left: 20px;
+    }
+  }
 }

@@ -1,5 +1,4 @@
-
-import { Tabs, Empty, Badge } from "antd";
+import { Tabs, Empty } from "antd";
 import {
   MessageOutlined,
   PhoneOutlined,
@@ -11,7 +10,9 @@ import {
 import History from "./components/history";
 import Conversation from "./components/conversation";
 
-import { CaseModel } from "@/slices/case/caseSlice";
+import { useAppDispatch } from "@/app/hooks";
+
+import { changeRoute, CaseModel } from "@/slices/case/caseSlice";
 
 import "./index.scss";
 import { useState } from "react";
@@ -23,6 +24,8 @@ const { TabPane } = Tabs;
 
 function DetailPannel(props: DetailPannelProps) {
   const { data } = props;
+  const dispatch = useAppDispatch();
+
   const [activeKey, setActiveKey] = useState("Conversation");
   const changeHandle = (key: string) => {
     setActiveKey(key);
@@ -66,6 +69,10 @@ function DetailPannel(props: DetailPannelProps) {
     }
   };
 
+  const handleClickLink = () => {
+    dispatch(changeRoute({ curPage: "detail" }));
+  };
+
   return (
     <div className="detail-pannel">
       <div className="detail-t">
@@ -73,7 +80,7 @@ function DetailPannel(props: DetailPannelProps) {
           {data.source === "Email" ? <MessageOutlined /> : <PhoneOutlined />}
         </div>
         <div className="tr">
-          <div className="tr-t">
+          <div className="tr-t" onClick={handleClickLink}>
             #{data.id} {data.title}
           </div>
           <div className="tr-b">
@@ -98,13 +105,7 @@ function DetailPannel(props: DetailPannelProps) {
       >
         {tabs.map((item) => (
           <TabPane
-            tab={
-              item.key === "Conversation" ? (
-                <Badge count={5} color="rgb(134, 53, 242)" size="small">{item.tab}</Badge>
-              ) : (
-                item.tab
-              )
-            }
+            tab={item.tab}
             key={item.key}
           >
             {tabContent(activeKey)}

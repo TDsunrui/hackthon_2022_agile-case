@@ -13,10 +13,6 @@ function DetailModal() {
   const { curPage, curCase } = useAppSelector((state) => state.case);
   const dispatch = useAppDispatch();
 
-  const handleClickLink = () => {
-    dispatch(changeRoute({ curPage: "detail" }));
-  };
-
   const handleCancel = () => {
     dispatch(changeRoute({ curPage: "home" }));
   };
@@ -30,7 +26,7 @@ function DetailModal() {
       onCancel={handleCancel}
       width="70%"
     >
-      <Typography.Title onClick={handleClickLink}>{curCase?.title}</Typography.Title>
+      <Typography.Title>{curCase?.title}</Typography.Title>
       <div className="detail-modal">
         {curCase && <PropertyPannel data={curCase}></PropertyPannel>}
         {curCase && <DetailPannel data={curCase}></DetailPannel>}

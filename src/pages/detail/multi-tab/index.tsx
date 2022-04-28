@@ -3,7 +3,7 @@ import { MessageOutlined, PhoneOutlined } from "@ant-design/icons";
 
 import { useAppDispatch } from "@/app/hooks";
 
-import { changeRoute, CaseModel } from "@/slices/case/caseSlice";
+import { setCurCaseId, CaseModel } from "@/slices/case/caseSlice";
 
 import "./index.scss";
 
@@ -17,12 +17,7 @@ function MultiTab(props: MultiTabProps) {
   const dispatch = useAppDispatch();
 
   const handleClickCaseItem = (id: string) => {
-    dispatch(
-      changeRoute({
-        curPage: "detail",
-        curCaseId: id,
-      })
-    );
+    dispatch(setCurCaseId(id));
   };
 
   return (

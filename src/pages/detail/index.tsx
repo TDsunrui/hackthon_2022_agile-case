@@ -23,8 +23,6 @@ function Detail() {
   const handleCancel = () => {
     dispatch(changeRoute({ curPage: "home" }));
   };
-  
-  console.log(111, curCaseId);
 
   return (
     <div className="detail-page">
