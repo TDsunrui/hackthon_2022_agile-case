@@ -4,17 +4,27 @@ import MultiTab from "./multi-tab";
 import PropertyPannel from "./property-pannel";
 import DetailPannel from "./detail-pannel";
 
-import { useAppSelector } from "@/app/hooks";
+import { useAppSelector, useAppDispatch } from "@/app/hooks";
+
+import { changeRoute } from "@/slices/case/caseSlice";
 
 import "./index.scss";
 
 function Detail() {
-  const { caseList } = useAppSelector((state) => state.case);
-  const data = caseList[0];
+  const dispatch = useAppDispatch();
+  const { curCase, caseList, curCaseId } = useAppSelector(
+    (state) => state.case
+  );
 
   const random = () => {
     return Math.floor(Math.random() * 10) + 1;
   };
+
+  const handleCancel = () => {
+    dispatch(changeRoute({ curPage: "home" }));
+  };
+  
+  console.log(111, curCaseId);
 
   return (
     <div className="detail-page">
@@ -22,6 +32,7 @@ function Detail() {
         <div className="back">
           <ArrowLeftOutlined
             style={{ fontSize: "14px", color: "#000", cursor: "pointer" }}
+            onClick={handleCancel}
           />
           <div className="overdue">
             <span>Overdue</span>
@@ -29,13 +40,13 @@ function Detail() {
           </div>
         </div>
         <div className="multi-tab-wrap">
-          <MultiTab></MultiTab>
+          <MultiTab caseList={caseList} curCaseId={curCaseId}></MultiTab>
         </div>
       </div>
 
-      <PropertyPannel data={data}></PropertyPannel>
+      {curCase && <PropertyPannel data={curCase}></PropertyPannel>}
 
-      <DetailPannel data={data}></DetailPannel>
+      {curCase && <DetailPannel data={curCase}></DetailPannel>}
     </div>
   );
 }

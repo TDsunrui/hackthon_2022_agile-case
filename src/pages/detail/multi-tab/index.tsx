@@ -1,20 +1,52 @@
 import { Card } from "antd";
 import { MessageOutlined, PhoneOutlined } from "@ant-design/icons";
 
-import { useAppSelector } from "@/app/hooks";
+import { useAppDispatch } from "@/app/hooks";
+
+import { changeRoute, CaseModel } from "@/slices/case/caseSlice";
 
 import "./index.scss";
 
-function MultiTab() {
-  const { caseList } = useAppSelector((state) => state.case);
+export interface MultiTabProps {
+  caseList: CaseModel[];
+  curCaseId: string | undefined;
+}
+
+function MultiTab(props: MultiTabProps) {
+  const { caseList, curCaseId } = props;
+  const dispatch = useAppDispatch();
+
+  const handleClickCaseItem = (id: string) => {
+    dispatch(
+      changeRoute({
+        curPage: "detail",
+        curCaseId: id,
+      })
+    );
+  };
 
   return (
     <div className="multiTab">
       {caseList.map((item) => {
         return (
-          <Card hoverable style={{ width: "100%" }} className={`${item.id === '1' ? 'active card-item' : 'card-item'}`} key={item.id}>
+          <Card
+            key={item.id}
+            hoverable
+            style={{ width: "100%" }}
+            className={`${
+              item.id === curCaseId ? "active card-item" : "card-item"
+            }`}
+            onClick={() => {
+              handleClickCaseItem(item.id);
+            }}
+          >
             <div className="item-t">
-              {item.source === 'Email' ? <MessageOutlined /> : <PhoneOutlined />} <span>{item.group}</span>
+              {item.source === "Email" ? (
+                <MessageOutlined />
+              ) : (
+                <PhoneOutlined />
+              )}{" "}
+              <span>{item.group}</span>
             </div>
             <div className="item-m">{item.due_date}</div>
             <div className="item-b">

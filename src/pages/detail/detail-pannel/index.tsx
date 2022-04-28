@@ -1,3 +1,4 @@
+
 import { Tabs, Empty, Badge } from "antd";
 import {
   MessageOutlined,
@@ -43,14 +44,6 @@ function DetailPannel(props: DetailPannelProps) {
     {
       tab: "ATTACHMENT",
       key: " Attachment",
-    },
-    {
-      tab: "ACTIVITY",
-      key: "Activity",
-    },
-    {
-      tab: "APPROVAL",
-      key: "Approval",
     },
     {
       tab: "HISTORY",
