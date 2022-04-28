@@ -1,3 +1,7 @@
+.case-item-agent-container, .case-item-group-container {
+  height: 205px;
+  overflow: hidden;
+}
 .case-item-agent-line {
   background-color: #fff;
   transition: background-color 0.2s linear;
@@ -19,24 +23,27 @@
     }
   }
 }
-
 .case-item-agent-avatar {
   cursor: pointer;
+}
+
+.case-item-group-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
 }
 
 .ant-popover-arrow {
   right: 4px !important;
 }
-
 .ant-popover-inner-content {
   padding: 12px 0 0 !important;
 }
-
 .ant-tabs-nav {
   margin: -10px 0 0 !important;
   padding: 0 16px !important;
 }
-
 .ant-list-item {
   padding: 8px 16px !important;
   cursor: pointer;
