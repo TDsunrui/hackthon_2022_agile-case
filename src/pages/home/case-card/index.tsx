@@ -1,3 +1,4 @@
+import React from "react";
 import { Divider, Typography } from "antd";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 
@@ -6,7 +7,6 @@ import CaseItem from "../case-item";
 import { SortedCaseModel } from "@/utils/sortCaseListByKey";
 
 import './index.scss';
-import React from "react";
 
 export interface CaseCardProps {
   data: SortedCaseModel;

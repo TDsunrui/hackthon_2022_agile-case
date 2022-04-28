@@ -67,7 +67,6 @@ function CaseItem(props: CaseItemProps) {
       ref={dragProvided.innerRef}
       {...dragProvided.draggableProps}
       {...dragProvided.dragHandleProps}
-      onClick={handleClickCaseItem}
     >
       {/* source */}
       <SourceIcon />
@@ -75,7 +74,7 @@ function CaseItem(props: CaseItemProps) {
       <div className="case-item-wrap">
         <div className="case-item-content">
           {/* id & title */}
-          <div className="case-item-content-first">
+          <div className="case-item-content-first" onClick={handleClickCaseItem}>
             #{data.id} {data.title}
           </div>
 

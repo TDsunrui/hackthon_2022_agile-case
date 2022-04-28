@@ -4,10 +4,12 @@ import CaseCard from '../case-card';
 
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 
+import { updateById } from '@/slices/case/caseSlice';
+
 import { SortedCaseModel } from '@/utils/sortCaseListByKey';
+import notification from '@/utils/notification';
 
 import './index.scss';
-import { updateById } from '@/slices/case/caseSlice';
 
 export interface CaseListProps {
   sortedCaseList: SortedCaseModel[];
@@ -32,6 +34,12 @@ function CaseList(props: CaseListProps) {
       id: draggableId,
       data: { [sortedKey]: targetId },
     }));
+
+    if (sortedKey === 'priority') {
+      notification('Priority updated successfully');
+    } else if (sortedKey === 'status') {
+      notification('Status updated successfully');
+    }
   };
   
   return (
