@@ -24,7 +24,7 @@ function DetailModal() {
       centered
       maskClosable={false}
       onCancel={handleCancel}
-      width="70%"
+      width="80%"
     >
       <Typography.Title>{curCase?.title}</Typography.Title>
       <div className="detail-modal">
