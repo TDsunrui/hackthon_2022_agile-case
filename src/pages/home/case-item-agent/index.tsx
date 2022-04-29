@@ -46,7 +46,7 @@ function CaseItemAgent(props: CaseItemAgentProps) {
   
   const popoverContent = (
     <Tabs defaultActiveKey="Agents" size="small">
-      <TabPane tab="Agents" key="Agents">
+      <TabPane className="case-item-agent-container" tab="Agents" key="Agents">
         <List
           dataSource={agentList}
           renderItem={(item) => {
@@ -76,7 +76,7 @@ function CaseItemAgent(props: CaseItemAgentProps) {
         />
       </TabPane>
 
-      <TabPane style={{ padding: '12px 16px' }} tab="Groups" key="Groups">
+      <TabPane className="case-item-group-container" tab="Groups" key="Groups">
         No groups have been added yet.
       </TabPane>
     </Tabs>
