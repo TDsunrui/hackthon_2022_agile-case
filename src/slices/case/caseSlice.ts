@@ -198,6 +198,7 @@ const caseSlice = createSlice({
       const caseList = [...state.caseList];
       caseList[index] = newCase;
       state.caseList = caseList;
+      state.curCase = state.caseList.find((item) => item.id === state.curCaseId);
     },
   }
 });

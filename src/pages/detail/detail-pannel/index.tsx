@@ -108,7 +108,9 @@ function DetailPannel(props: DetailPannelProps) {
             tab={item.tab}
             key={item.key}
           >
-            {tabContent(activeKey)}
+            <div className="tabs-content">
+              {tabContent(activeKey)}
+            </div>
           </TabPane>
         ))}
       </Tabs>

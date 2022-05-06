@@ -16,10 +16,6 @@ function Detail() {
     (state) => state.case
   );
 
-  const random = () => {
-    return Math.floor(Math.random() * 10) + 1;
-  };
-
   const handleCancel = () => {
     dispatch(changeRoute({ curPage: "home" }));
   };
@@ -34,7 +30,7 @@ function Detail() {
           />
           <div className="overdue">
             <span>Overdue</span>
-            <span>（{random()}）</span>
+            <span>（{caseList.length}）</span>
           </div>
         </div>
         <div className="multi-tab-wrap">
